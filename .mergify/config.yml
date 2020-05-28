@@ -1,0 +1,18 @@
+pull_request_rules:
+  # Note: scala-steward doesn't support mill now.
+  # https://github.com/fthomas/scala-steward/issues/314
+  - name: assign and label scala-steward's PRs
+    conditions:
+      - author=scala-steward
+    actions:
+      assign:
+        users: [NomadBlacky]
+      label:
+        add: [dependency-updates]
+  - name: merge scala-steward's PRs
+    conditions:
+      - author=scala-steward
+      - "status-success=sbt_tasks"
+    actions:
+      merge:
+        method: squash
